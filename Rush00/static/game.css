@@ -1,5 +1,5 @@
 	body { 
-		background: white url(http://i.imgur.com/KzhyHhr.gif);
+		background: black /*url(http://i.imgur.com/KzhyHhr.gif)*/;
 		height: 100%;
 		width: 100%;
 		display: flex;
@@ -170,7 +170,7 @@
 	}
 
 	.player {
-		position: absolute;
+		position: absolute !important;
 		width: 10%;
 		height: 10%;
 		top: 0%;

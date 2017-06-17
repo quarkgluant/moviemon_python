@@ -224,19 +224,19 @@ def Worldmap(request):
 		if request.GET.get('a') in choix:
 			if request.GET.get('a') == 'left' and db.mapx > MAPMIN:
 				db.mapx-=1
-				db.coord[1]-=0.0010
+				db.coord[1]-=10
 				miv = 1
 			if request.GET.get('a') == 'right' and db.mapx < MAPMAX:
 				db.mapx+=1
-				db.coord[1]+=0.0010
+				db.coord[1]+=10
 				miv = 1
 			if request.GET.get('a') == 'up' and db.mapy > MAPMIN:
 				db.mapy-=1
-				db.coord[0]+=0.0010
+				db.coord[0]+=10
 				miv = 1
 			if request.GET.get('a') == 'down' and db.mapy < MAPMAX:
 				db.mapy+=1
-				db.coord[0]-=0.0010
+				db.coord[0]-=10
 				miv = 1
 
 			if (miv):
@@ -254,12 +254,14 @@ def Worldmap(request):
 	if len(db.MoviemonBattle) > 0:
 		etat = "attack"
 		print(db.MoviemonBattle)
-		if request.GET.get('a') == 'a':
-			return redirect('/battle/'+db.MoviemonBattle)
-		elif request.GET.get('a') == 'b':
-			db.MoviemonBattle = ""
-			etat = "balade"
-	db.save("save.pickle")
+		return redirect('/battle/'+db.MoviemonBattle)
+
+	# 	if request.GET.get('a') == 'a':
+	# 		return redirect('/battle/'+db.MoviemonBattle)
+	# 	elif request.GET.get('a') == 'b':
+	# 		db.MoviemonBattle = ""
+	# 		etat = "balade"
+	# db.save("save.pickle")
 
 	return render(request, "Rush00/game.html", {
 													"LATI":db.coord[0],
@@ -267,8 +269,8 @@ def Worldmap(request):
 													"movieball": db.movieballs,
 													"movietitle":db.MoviemonBattle,
 													"etat":etat,
-													"mapx":db.mapx,
-													"mapy":db.mapy
+													"mapx":10*db.mapx,
+													"mapy":10*db.mapy,
 	})
 
 def Form(request):
