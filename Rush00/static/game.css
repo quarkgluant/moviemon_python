@@ -173,8 +173,8 @@
 		position: absolute !important;
 		width: 10%;
 		height: 10%;
-		top: 0%;
-		left: 0%;
+		/*top: 0%;*/
+		/*left: 0%;*/
 	}
 
 	.save_slot {

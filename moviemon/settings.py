@@ -119,3 +119,31 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+LIST_MOVIES =  [ 'Julieta',
+      'Reality',
+      'The Voices',
+      'Drunken Master',
+      'Mommy',
+      'Sharknado',
+      'Gunday',
+      'Razorback',
+      'Alone in the Dark',
+      'Left Behind',
+      'The Hottie & the Nottie',
+      'Saving Christmas',
+      'Monster High: Welcome to Monster High',
+      'Money Monster',
+      'Monsters, Inc.',
+      'The Naked Monster',
+      'Seamonsters',
+      'Adventures of Petey and Friends',
+      'Alien',
+      'Prometheus',
+      'Dune',
+      'Code Name: K.O.Z.',
+      'Monster a-Go Go',
+      "Manos: The Hands of Fate",
+      "Birdemic: Shock and Terror",
+      "Disaster Movie",
+      "Zombie Nation"
+    ]

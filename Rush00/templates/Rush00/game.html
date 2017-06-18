@@ -3,12 +3,15 @@
 {% block content %}
 	{% load static %}
  		<div class="player">
- 			<img src="{% static 'player.png' %}" class="player">
+ 			<img src="{% static 'player.png' %}" class="player" style="top:{{mapy}}%;left:{{mapx}}%">
  		</div>
 		<img src="{% static 'map.jpg' %}" class="map">
  
 	{% if etat == "attack" %}<div class="message">Attaque de {{movietitle}}</div>{% endif %}
 <!-- 	<div class="moviballs"> MovieBalls: {{movieball}} {% if etat == "ball" %} -> +1 MovieBall {% endif %}
-		<div class="coord">[{{mapx}} : {{mapy}}]</div>
 	</div>
- -->{% endblock %}
+-->		
+
+ <!-- <div class="coord">[{{mapx}} : {{mapy}}]</div> -->
+
+{% endblock %}

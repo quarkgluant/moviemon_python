@@ -1,4 +1,6 @@
 import sys, json, requests, pickle, random, os
+from django.conf import settings
+
 
 class Gestion(object):
 
@@ -15,9 +17,9 @@ class Gestion(object):
 	@classmethod
 	def set_default(cls):
 
-		cls.mapx = 50
-		cls.mapy = 50
-		cls.coord           = [48.8584, 2.2945]
+		cls.mapx = 0
+		cls.mapy = 0
+		cls.coord           = [0,0] #[48.8584, 2.2945]
 		cls.movieballs      = 100
 		cls.Moviemons       = {}
 		cls.My_Moviemons    = []
@@ -33,8 +35,8 @@ class Gestion(object):
 					new_My_Moviemons,
 					new_MoviemonBattle = [],
 					new_Strenght = 0,
-					new_mapx = 50,
-					new_mapy = 50,
+					new_mapx = 0,
+					new_mapy = 0,
 					new_index = 0):
 
 		cls.coord           = new_corrd
@@ -69,14 +71,7 @@ class Gestion(object):
 		self.MoviemonBattle = ''
 
 	def __init__(self):
-		self.lst = ['Der Pirat',
-					'Terror',
-					'Star Wars: Episode IV - A New Hope',
-					'Hibou',
-					'avatar',
-					'rambo',
-					'Aliens',
-					'Intouchable']
+		self.lst = settings.LIST_MOVIES
 
 	def load(self, name):
 		info = []
@@ -144,6 +139,7 @@ class Gestion(object):
 		F.close()
 		return info
 
+	@property
 	def get_strength(self):
 		return len(self.My_Moviemons)
 

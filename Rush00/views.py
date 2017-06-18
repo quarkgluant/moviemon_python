@@ -169,11 +169,11 @@ def Battle(request, moviemon_id):
 		else:
 			return redirect('/')
 		if request.GET.get('a') == 'a':
-			#print(db.Moviemons[moviemon_id])
-			# print(imdbRating)
+			print(db.Moviemons[moviemon_id])
+			# print()
 			if db.movieballs > 0:
 				db.movieballs -= 1
-				# print(db.Moviemons[moviemon_id]['imdbRating'])
+				print(db.Moviemons[moviemon_id]['imdbRating'])
 				if (capture(calcul(db.Moviemons[moviemon_id]['imdbRating'], db.Strenght))):
 					db.My_Moviemons.append(moviemon_id)
 					remarque = moviemon_id +  " Captured !"
@@ -221,27 +221,36 @@ def Worldmap(request):
 	rand = 0
 	etat = "balade"
 	if len(db.MoviemonBattle) == 0:
+		print("request.GET.get('a'): ", request.GET.get('a'))
 		if request.GET.get('a') in choix:
 			if request.GET.get('a') == 'left' and db.mapx > MAPMIN:
-				db.mapx-=1
-				db.coord[1]-=10
+				print("coordonnees avant ({}, {})".format(db.mapx, db.mapy))
+				print("on tourne a gauche")
+				db.mapx-=10
 				miv = 1
+				print("coordonnees apres ({}, {})".format(db.mapx, db.mapy))
 			if request.GET.get('a') == 'right' and db.mapx < MAPMAX:
-				db.mapx+=1
-				db.coord[1]+=10
+				print("coordonnees avant ({}, {})".format(db.mapx, db.mapy))
+				print("on tourne a droite")
+				db.mapx+=10
 				miv = 1
+				print("coordonnees apres ({}, {})".format(db.mapx, db.mapy))
 			if request.GET.get('a') == 'up' and db.mapy > MAPMIN:
-				db.mapy-=1
-				db.coord[0]+=10
+				print("coordonnees avant ({}, {})".format(db.mapx, db.mapy))
+				print("on monte")
+				db.mapy-=10
 				miv = 1
+				print("coordonnees apres ({}, {})".format(db.mapx, db.mapy))
 			if request.GET.get('a') == 'down' and db.mapy < MAPMAX:
-				db.mapy+=1
-				db.coord[0]-=10
+				print("coordonnees avant ({}, {})".format(db.mapx, db.mapy))
+				print("on descend")
+				db.mapy+=10
 				miv = 1
+				print("coordonnees apres ({}, {})".format(db.mapx, db.mapy))
 
 			if (miv):
 				rand = random.randint(1,100)
-				if rand > 60 and len(db.get_random_movie()) > 0: #A VERIF
+				if rand > 70 and len(db.get_random_movie()) > 0: #A VERIF
 					print("Moviemon trouve", random.choice(db.get_random_movie()))
 					etat = "attack"
 					db.MoviemonBattle = random.choice(db.get_random_movie())
@@ -249,7 +258,7 @@ def Worldmap(request):
 					db.modif_movieballs(db.movieballs+1)
 					print("Movieball trouve")
 					etat = "ball"
-
+			db.save("save.pickle")
 
 	if len(db.MoviemonBattle) > 0:
 		etat = "attack"
@@ -261,16 +270,13 @@ def Worldmap(request):
 	# 	elif request.GET.get('a') == 'b':
 	# 		db.MoviemonBattle = ""
 	# 		etat = "balade"
-	# db.save("save.pickle")
+	db.save("save.pickle")
 
-	return render(request, "Rush00/game.html", {
-													"LATI":db.coord[0],
-													"LONG":db.coord[1],
-													"movieball": db.movieballs,
+	return render(request, "Rush00/game.html", {	"movieball": db.movieballs,
 													"movietitle":db.MoviemonBattle,
 													"etat":etat,
-													"mapx":10*db.mapx,
-													"mapy":10*db.mapy,
+													"mapx":db.mapx,
+													"mapy":db.mapy,
 	})
 
 def Form(request):
