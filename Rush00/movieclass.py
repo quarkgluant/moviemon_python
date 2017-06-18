@@ -17,8 +17,8 @@ class Gestion(object):
 	@classmethod
 	def set_default(cls):
 
-		cls.mapx = 0
-		cls.mapy = 0
+		cls.mapx = settings.POS_PLAYER[0]
+		cls.mapy = settings.POS_PLAYER[1]
 		cls.coord           = [0,0] #[48.8584, 2.2945]
 		cls.movieballs      = 100
 		cls.Moviemons       = {}
@@ -80,7 +80,7 @@ class Gestion(object):
 			with (open(name, "rb")) as openfile:
 				while True:
 					try:
-						print("Je recupere gentill;ement:", name);
+						print("Je recupere gentillement:", name);
 						info.append(pickle.load(openfile))
 					except EOFError:
 						break

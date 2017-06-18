@@ -124,6 +124,12 @@
 
 	.cmd {
 		margin-top: 100px;
+		bottom:10px;
+	}
+	p.test{
+	    font-weight: bold;
+	    color: #f95;
+	    text-decoration: underline;
 	}
 
 	.cmd span:first-child {
@@ -176,7 +182,30 @@
 		/*top: 0%;*/
 		/*left: 0%;*/
 	}
+	.imgmon{
+    background-size: cover;
+    width: 50px !important;
+    height: 70px !important;
+    float: left;
+	}
 
+	.tuning {
+	border:1px solid #f00;
+	}
+
+
+	.moviballs {
+		position: absolute;
+		margin-left: 100px;
+/*		margin-right: 250px;
+*/		color: blue;
+		font-size: 18px;
+	}
+	.message {
+		color: red;
+		font-size: 18px;
+	
+	}
 	.save_slot {
 		margin: 26px;
 		padding: 20px;

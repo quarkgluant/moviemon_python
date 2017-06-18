@@ -1,10 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
-
 from .forms import MyForm
-
 import random
-
 from .movieclass import Gestion
+from django.conf import settings
 
 def calcul(StrenghtMovie, StrenghtPlayer):
 	C = 50 - (float(StrenghtMovie) * 10) + (StrenghtPlayer * 5)
@@ -54,6 +52,11 @@ def OptionsSave(request):
 		slotsmon.append([slot[0:5], len(dirtybase.Moviemons)])
 		i+=1
 
+	print("slotsMy:")
+	print(slotsMy)
+	print("slotsMy:")
+	print(slotsMy)
+
 	db = Gestion()
 	db.load("save.pickle")
 	index = db.index;
@@ -76,7 +79,12 @@ def OptionsSave(request):
 		return redirect('/options/save_game?process=1')
 	if request.GET.get('a') == 'b':
 		return redirect('/options')
-	return render(request, "Rush00/optionsSave.html", {"slots":slots, "slotsmon":slotsmon,"slotsMy":slotsMy, "name":slotscut[db.index]})
+	return render(request, "Rush00/optionsSave.html", 
+		{	"slots":slots, 
+			"slotsmon":slotsmon,
+			"slotsMy":slotsMy, 
+			"name":slotscut[db.index]
+		})
 
 
 def OptionsLoad(request):
@@ -170,15 +178,17 @@ def Battle(request, moviemon_id):
 			return redirect('/')
 		if request.GET.get('a') == 'a':
 			print(db.Moviemons[moviemon_id])
-			# print()
 			if db.movieballs > 0:
 				db.movieballs -= 1
 				print(db.Moviemons[moviemon_id]['imdbRating'])
 				if (capture(calcul(db.Moviemons[moviemon_id]['imdbRating'], db.Strenght))):
 					db.My_Moviemons.append(moviemon_id)
-					remarque = moviemon_id +  " Captured !"
+					remarque = "You catched it !"
 					db.MoviemonBattle = ""
 					db.Strenght += 1
+					print("Movimon", moviemon_id, "captured :)")
+				else:
+					print("Movimon", moviemon_id, " resiste le bougre")
 			else:
 				print("Moquerie")
 				remarque = "Dommage ! C'est vide ! B pour continuer ..."
@@ -203,7 +213,7 @@ def Battle(request, moviemon_id):
 	})
 
 MAPMIN = 0
-MAPMAX = 100
+MAPMAX = settings.GRID_SIZE * 10
 
 def Worldmap(request):
 	db = Gestion()
@@ -229,7 +239,7 @@ def Worldmap(request):
 				db.mapx-=10
 				miv = 1
 				print("coordonnees apres ({}, {})".format(db.mapx, db.mapy))
-			if request.GET.get('a') == 'right' and db.mapx < MAPMAX:
+			if request.GET.get('a') == 'right' and db.mapx < MAPMAX - 10:
 				print("coordonnees avant ({}, {})".format(db.mapx, db.mapy))
 				print("on tourne a droite")
 				db.mapx+=10
@@ -241,7 +251,7 @@ def Worldmap(request):
 				db.mapy-=10
 				miv = 1
 				print("coordonnees apres ({}, {})".format(db.mapx, db.mapy))
-			if request.GET.get('a') == 'down' and db.mapy < MAPMAX:
+			if request.GET.get('a') == 'down' and db.mapy < MAPMAX - 10:
 				print("coordonnees avant ({}, {})".format(db.mapx, db.mapy))
 				print("on descend")
 				db.mapy+=10

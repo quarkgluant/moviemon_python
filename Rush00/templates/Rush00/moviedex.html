@@ -2,14 +2,17 @@
 
 {% block content %}
 
-<font style="font-size:5px;">
 <center>MOVIEDEX</center>
+<font style="font-size:5px;">
 
 {%for title,value in dico.items %}
 	<div class ="imgmon {% if title == cursor %} tuning {% endif %}" style="background-image:url('{{value.Poster}}');">
-
 	</div>
 {% endfor %}
+</font>
+	<div class="cmd">
+		<span>[A] More information - [select] Back to Map</span>
+	</div>
 <!-- <div style="float:left;">
 {{film1.title}}
 </div>
@@ -28,6 +31,6 @@
 	</div>
 {% endif %} -->
 
-</font>
+
 
 {% endblock %}

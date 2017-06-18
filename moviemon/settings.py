@@ -129,21 +129,20 @@ LIST_MOVIES =  [ 'Julieta',
       'Razorback',
       'Alone in the Dark',
       'Left Behind',
-      'The Hottie & the Nottie',
       'Saving Christmas',
       'Monster High: Welcome to Monster High',
       'Money Monster',
-      'Monsters, Inc.',
       'The Naked Monster',
       'Seamonsters',
       'Adventures of Petey and Friends',
       'Alien',
       'Prometheus',
       'Dune',
-      'Code Name: K.O.Z.',
       'Monster a-Go Go',
       "Manos: The Hands of Fate",
       "Birdemic: Shock and Terror",
       "Disaster Movie",
       "Zombie Nation"
     ]
+GRID_SIZE = 10
+POS_PLAYER = [0, 0]

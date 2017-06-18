@@ -7,14 +7,17 @@
 		<div class="monster">
 			<!-- <h2><%= $selected[:title]%></h2> -->
 			<h2>{{DicoMovie.Title}}</h2>
-			<h3>Life: {{DicoMovie.imdbRating}} ({{Luck}} %) </h3>
-			<h3>Director: {{DicoMovie.Director}} </h3>
+			<h3>Its Strength: {{DicoMovie.imdbRating}}</h3>
+			<h3>&nbsp</h3>
 			<h3>My Strenght: {{Strenght}} </h3>
+			<h3>My Lucky: {{Luck}}%</h3>
+			<span>{% if remarque|length > 0 %}<div class="message"> {{remarque}}</div>{% endif %}</span>
+
 		</div>
 		<div class="poster"><img src="{{DicoMovie.Poster}}" /></div>
 		<div class="cmd">
-			<span>[A] - Fight!</span>
-			<span>[B] Run...</span>
+			<span>[A] Launch ball!</span>
+			<span>[B] Back to Map</span>
 		</div>
 	</div>
 	<img src="{% static 'battle.png' %}" class="battle"  />
